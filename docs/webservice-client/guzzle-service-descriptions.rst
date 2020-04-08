@@ -273,7 +273,7 @@ Parameters in both operations and models are represented using the
     "default", "mixed", "Default value to use if no value is supplied"
     "static", "boolean", "Set to true to specify that the parameter value cannot be changed from the default setting"
     "description", "string", "Documentation of the parameter"
-    "location", "string", "The location of a request used to apply a parameter. Custom locations can be registered with a command, but the defaults are uri, query, statusCode, reasonPhrase, header, body, json, xml, postField, postFile, responseBody"
+    "location", "string", "The location of a request used to apply a parameter. Custom locations can be registered with a command, but the defaults are uri, query, statusCode, reasonPhrase, header, body, json, xml, formParam, multiPart, responseBody"
     "sentAs", "string", "Specifies how the data being modeled is sent over the wire. For example, you may wish to include certain headers in a response model that have a normalized casing of FooBar, but the actual header is x-foo-bar. In this case, sentAs would be set to x-foo-bar."
     "filters", "array", "Array of functions to to run a parameter value through."
 
@@ -368,18 +368,17 @@ body location
 Parameters are injected as the body of a request. The input of these parameters may be anything that can be cast to a
 string or a ``Guzzle\Http\EntityBodyInterface`` object.
 
-postField location
+formParam location
 ^^^^^^^^^^^^^^^^^^
 
 Parameters are inserted as POST fields in a request. Nested values may be supplied and will be represented using
 PHP style nested query strings. The POST field name is the same as the parameter name by default. You can use the
 ``sentAs`` parameter to override the POST field name.
 
-postFile location
+multiPart location
 ^^^^^^^^^^^^^^^^^
 
-Parameters are added as POST files. A postFile value may be a string pointing to a local filename or a
-``Guzzle\Http\Message\PostFileInterface`` object. The name of the POST file will be the name of the parameter by
+Parameters are added as POST files. A multiPart value may be a string pointing to a local filename. The name of the POST file will be the name of the parameter by
 default. You can use a custom POST file name by using the ``sentAs`` attribute.
 
 Supports "string" and "array" types.
